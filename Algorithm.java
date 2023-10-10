@@ -9,8 +9,7 @@ import java.util.Set;
 public class Algorithm {
 	
 	//naive
-	public static HashMap<Integer, Set<Integer>> naive(HashMap<Integer, List<Integer>> allrepairs, HashMap<Integer, int[]> conflictgraph) {
-		HashMap<Integer, Set<Integer>> result = new HashMap<>();		
+	public static HashMap<Integer, Set<Integer>> naive(HashMap<Integer, List<Integer>> allrepairs, HashMap<Integer, int[]> conflictgraph) {	
 		HashMap<Integer, Set<Integer>> CompabilitySetBinary = new HashMap<>();
         HashMap<Integer, Set<Integer>> nonCompabilitySetBinary = new HashMap<>();
 		
@@ -39,23 +38,6 @@ public class Algorithm {
             }
         }
 
-/*
-        for (int keys : conflictbinaire.keySet()) {
-            for (int keysrepair1 : allrepairs.keySet()) {
-            	boolean containsElement11 = allrepairs.get(keysrepair1).contains(conflictbinaire.get(keys)[0]);               
-            	for (int keysrepair2 : allrepairs.keySet()) {
-            		if (containsElement11) {
-            			boolean containsElement2 = allrepairs.get(keysrepair2).contains(conflictbinaire.get(keys)[1]);
-                        if (containsElement2) {
-                        	nonCompabilitySetBinary.get(keysrepair1).add(keysrepair2);
-                        	nonCompabilitySetBinary.get(keysrepair2).add(keysrepair1);
-                        }
-            		}
-            	}
-            }
-        }
- */       
-       // HashMap<Integer,Set<Integer>> SetBinary= removeAllElements(CompabilitySetBinary, nonCompabilitySetBinary);
         
         HashMap<Integer, Set<Integer>> CompabilitySetNonBinary = new HashMap<>();
         for (int keys : allrepairs.keySet()) {
@@ -68,11 +50,8 @@ public class Algorithm {
         }
         
         for(int keys : conflictgraph.keySet()) {
-        	//for (int keyrepairs1 =0;keyrepairs1<allrepairs.keySet().size()-1;keyrepairs1++) {
         	for (int keyrepairs1 : allrepairs.keySet()) {
-            	//for(int keyrepairs2 =keyrepairs1+1;keyrepairs2<allrepairs.keySet().size();keyrepairs2++) {
         		for (int keyrepairs2 : allrepairs.keySet()) {
-            		//System.out.println(keyrepairs1+" "+allrepairs.get(keyrepairs1));
             		Set<Integer> compabilityset = new HashSet<>(allrepairs.get(keyrepairs1));
             		compabilityset.addAll(allrepairs.get(keyrepairs2));
             		Set<Integer> intersection = new HashSet<>(allrepairs.get(keyrepairs1));
@@ -91,56 +70,19 @@ public class Algorithm {
 
         }
         HashMap<Integer, Set<Integer>> SetNonBinary = removeAllElements(CompabilitySetNonBinary,nonCompabilitySetNonBinary);
-        /*
-        for(int keys : conflictnonbinary.keySet()) {
-        	for (int keyrepairs1 =0;keyrepairs1<allrepairs.keySet().size()-1;keyrepairs1++) {
-            	for(int keyrepairs2 =keyrepairs1+1;keyrepairs2<allrepairs.keySet().size();keyrepairs2++) {
-            		for(int element : conflictnonbinary.get(keys)) {
-            			if(allrepairs.get(keyrepairs1).contains(element) && allrepairs.get(keyrepairs2).contains(element)) {
-            				//做并集，并检查是否含有完整conflict
-            				Set<Integer> s1 =new HashSet<>(allrepairs.get(keyrepairs1));
-            				Set<Integer> s2 =new HashSet<>(allrepairs.get(keyrepairs2));
-            				s1.addAll(s2);
-            				//转换list为set
-            				List<Integer> list = new ArrayList<>();
-            		        for (int num : conflictnonbinary.get(keys)) {
-            		            list.add(num);
-            		        }
-            				
-            				
-            				Set<Integer> conflict =new HashSet<>(list);
-            				if(s1.containsAll(conflict)) {
-            					CompabilitySetNonBinary.get(keyrepairs1).add(keyrepairs2);
-            					CompabilitySetNonBinary.get(keyrepairs2).add(keyrepairs1);
-            					//System.out.println("r1 : "+keyrepairs1+" r2 : "+keyrepairs2);
-            					break;
-            				}
-            			}
-            		}      		
-            	}
-            	//System.out.println("r1 : "+keyrepairs1);
-            }
-        }
-        */
-        //System.out.println("binary :"+SetBinary);
-        //System.out.println("non binary :"+CompabilitySetNonBinary);
-        
-        //result = intersectionOfSets(SetBinary, SetNonBinary);
 
         return SetNonBinary;
     }
 	
 	//optimize
 	public static HashMap<Integer, Set<Integer>> optimize(HashMap<Integer, List<Integer>> allrepairs, HashMap<Integer, int[]> conflictgraph) {
-		HashMap<Integer, Set<Integer>> result = new HashMap<>();
+
 		HashMap<Integer, Set<Integer>> compabilitysets = new HashMap<>();
-		HashMap<Integer, Set<Integer>> optimalrepairs = new HashMap<>();
 		HashMap<Integer, Set<Integer>> CompabilitySetBinary = new HashMap<>();
         HashMap<Integer, Set<Integer>> nonCompabilitySetBinary = new HashMap<>();
 		
         HashMap<Integer, int[]> conflictbinaire = new HashMap<>();
         HashMap<Integer, int[]> conflictnonbinary = new HashMap<>();
-        int maxard =0;
 		
         for (int keys : allrepairs.keySet()) {
             CompabilitySetBinary.put(keys, allrepairs.keySet());
@@ -172,7 +114,7 @@ public class Algorithm {
         
         if(conflictbinaire.keySet().size()==conflictgraph.keySet().size()) {
 
-        	//return CompabilitySet;
+        	return CompabilitySet;
         }
 
 
@@ -239,19 +181,7 @@ public class Algorithm {
         HashMap<Integer, Set<Integer>> SetNonBinary = removeAllElements(CompabilitySetNonBinary,nonCompabilitySetNonBinary);
       
         compabilitysets = intersectionOfSets(SetBinary, SetNonBinary);
-        
-        //result = findOptimalRepairs(compabilitysets);
-        /*
-        for(int index : result.keySet()) {
-        	for(int keyrepairs : result.get(index)) {
-        		if(optimalrepairs.containsKey(index)) {
-        			optimalrepairs.get(index).addAll(allrepairs.get(keyrepairs));
-        		}else {
-        			optimalrepairs.put(index, new HashSet<>(allrepairs.get(keyrepairs)));
-        		}
-        	}
-        }
-         */
+
         return compabilitysets;
     }
 	
@@ -259,7 +189,7 @@ public class Algorithm {
 		 Set<Integer> cardinalityset = new HashSet<>();
 
 		int maxlength=0;
-		/*
+		
 		for (int keyrepairs1 : allrepairs.keySet()) {
     		if(allrepairs.get(keyrepairs1).size()>maxlength) {
     			cardinalityset.clear();
@@ -268,24 +198,15 @@ public class Algorithm {
     		}else if(allrepairs.get(keyrepairs1).size()==maxlength) {
     			cardinalityset.add(keyrepairs1);
     		}
-    	}*/
-		
-		for (int keyrepairs1 : allrepairs.keySet()) {
-    		if(allrepairs.get(keyrepairs1).size()>maxlength) {
-    			cardinalityset.clear();
-    			cardinalityset.add(keyrepairs1);
-    			maxlength = allrepairs.get(keyrepairs1).size();
-    		}
     	}
 		
 		return cardinalityset;
 	}
 
 	
-	//对于三元，二元求stratagy。
+	//for conflict binary and ternary。
  	public static HashMap<Integer, Set<Integer>> ternaire(HashMap<Integer, List<Integer>>  allrepairs1,HashMap<Integer, int[]> dataMap) {
 		HashMap<Integer, List<Integer>>  allrepairs = allrepairs1;
-		HashMap<Integer, Set<Integer>> intersection = new HashMap<>();
         HashMap<Integer, int[]> conflictbinaire = new HashMap<>();
         HashMap<Integer, int[]> conflictternaire = new HashMap<>();
         HashMap<Integer, int[]> conflicts = new HashMap<>();
@@ -415,7 +336,6 @@ public class Algorithm {
 	
 	public static HashMap<Integer, Set<Integer>> removeAllElements(HashMap<Integer, Set<Integer>> CompabilitySet,HashMap<Integer, Set<Integer>> nonCompabilitySet) {
 		HashMap<Integer, Set<Integer>> result = new HashMap<>();
-        // 遍历 nonCompabilitySet 中的每个键值对
 		for (int keys : CompabilitySet.keySet() ) {
 			Set<Integer> set = new HashSet<>(CompabilitySet.get(keys));
 			set.removeAll(nonCompabilitySet.get(keys));
@@ -429,7 +349,6 @@ public class Algorithm {
 	public static List<Set<Integer>> getAllCombinations(int[] arr) {
         List<Set<Integer>> combinations = new ArrayList<>();
 
-        // 遍历数组并获取两两元素组合
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = i + 1; j < arr.length; j++) {
                 Set<Integer> combination = new HashSet<>();
@@ -441,14 +360,12 @@ public class Algorithm {
       
         return combinations;
     }
-	//两hashmap中的相同set求交集
 	public static HashMap<Integer, Set<Integer>> intersectionOfSets(HashMap<Integer, Set<Integer>> map1, HashMap<Integer, Set<Integer>> map2) {
         HashMap<Integer, Set<Integer>> result = new HashMap<>();
 
-        // 找出两个 HashMap 中具有相同键的键值对
         for (Integer key : map1.keySet()) {
             if (map2.containsKey(key)) {
-                // 对于相同的键值对，取出对应的 Set<Integer>，计算交集，并放入 result 中
+            	
                 Set<Integer> set1 = map1.get(key);
                 Set<Integer> set2 = map2.get(key);
                 Set<Integer> intersection = new HashSet<>(set1);
@@ -466,23 +383,18 @@ public class Algorithm {
 	
 	
 	public static HashMap<Integer, Set<Integer>> findOptimalRepairs(HashMap<Integer, Set<Integer>> inputMap) {
-        // 用于存储最大大小的 Set<Integer> 的 HashMap
         HashMap<Integer, Set<Integer>> largestSets = new HashMap<>();
 
-        // 用于跟踪最大大小
         int maxSize = 0;
 
-        // 遍历输入的 HashMap 条目
         for (HashMap.Entry<Integer, Set<Integer>> entry : inputMap.entrySet()) {
             int setSize = entry.getValue().size();
 
-            // 如果当前 Set<Integer> 大小大于最大大小，清除 largestSets 并添加当前 Set
             if (setSize > maxSize) {
                 maxSize = setSize;
                 largestSets.clear();
                 largestSets.put(entry.getKey(), entry.getValue());
             } 
-            // 如果当前 Set<Integer> 大小等于最大大小，添加当前 Set
             else if (setSize == maxSize) {
                 largestSets.put(entry.getKey(), entry.getValue());
             }
@@ -512,7 +424,6 @@ public class Algorithm {
         return result;
     } 
 	
-	//检查cause是否符合某种semantic
 		public static void semanticcheck(Set<Integer> cause,HashMap<Integer, Set<Integer>> compabilityset, String keyword){
 			boolean result = false;
 			switch (keyword) {
