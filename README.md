@@ -28,10 +28,10 @@ number of non-binary conflicts:
 
 Select formula(provenance(), 'assertion_mapping')  
     From grouppractice as g1,grouppractice as g2   
-    Where g1.zip = g2.zip 
-          and g1.cty = g2.cty 
-          and g1.st = g2.st  
-          and g1.org_pac_id != g2.org_pac_id ;  
+    Where g1.zip = g2.zip   
+          and g1.cty = g2.cty   
+          and g1.st = g2.st    
+          and g1.org_pac_id != g2.org_pac_id ;    
 
 
 We selected a set of conflicts whose sizes range from 4 to 51. In total, we obtained 35710 (9134 binary and 26576 non-binary) conflicts, i.e. medical_conflictgrpha.dat,
