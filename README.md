@@ -13,14 +13,13 @@ To find compatibility based optimal repairs, you should run this in your termina
 
 Then you can find the optimal repairs in the file "optimalrepairs.json" and other information in the file "result_1mn.txt"
 
-We have already given the conflictgraph and the minimal hitting set as input of compatibility_1min.jar:  
-
-    conflicts.json
-    hittingsets.json
+We have already given the conflict graph and the minimal hitting set as input of compatibility_1min.jar:  
+    
+`conflicts.json` and `hittingsets.json`
 
 You can rebuild these two files by following the steps in the notebook:
  
-    pysat_for_hittingset.ipynb
+`pysat_for_hittingset.ipynb`
      
 
     
@@ -40,7 +39,17 @@ Select formula(provenance(), 'assertion_mapping')
 &emsp;&emsp;&emsp;&emsp;         And g1.org_pac_id != g2.org_pac_id ;    
 
 
-We selected a set of conflicts whose sizes range from 4 to 51. In total, we obtained 35710 (9134 binary and 26576 non-binary) conflicts, i.e. medical_conflictgrpha.dat,
-the input of pysat_for_hittingset.ipynb, which results in 1888 connected components. 
+We selected a set of conflicts whose sizes range from 4 to 51. In total, we obtained 35710 (9134 binary and 26576 non-binary) conflicts,
 
+`medical_conflictgrpha.dat`
+
+It is the input of the notebook:
+
+`pysat_for_hittingset.ipynb`
+    
+which generated 1888 connected components of the conflict graph:  
+
+`conflicts.json` contains the conflicts appearing in each connected component.
+
+`hittingset.json` contains the minimal hitting sets of each connected component.
  
