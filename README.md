@@ -21,7 +21,7 @@ You can rebuild these two files by following the steps in the notebook:
  
 `pysat_for_hittingset.ipynb`
      
-The mapping between the string representation and integer representation is given in the file:
+The mapping between the string representation and the integer representation of formulas is given in the file:
 
 `medicale_index.json`
     
