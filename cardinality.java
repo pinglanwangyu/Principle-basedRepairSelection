@@ -27,8 +27,8 @@ public class cardinality {
         Set<Integer> wholedata = new HashSet<>() ;
         try {
            
-            String ConflictPath = "./conflictsnonbinary.json"; 
-            String HittingSetPath = "./hittingsetnonbinary.json"; 
+            String ConflictPath = "./conflicts.json"; 
+            String HittingSetPath = "./hittingsets.json"; 
 
             HashMap<Integer, Set<Set<Integer>>> ConflictGraph = JsonReader.readJsonFile(ConflictPath);
             HashMap<Integer, Set<Set<Integer>>> HittingSetGraph = JsonReader.readJsonFile(HittingSetPath);
