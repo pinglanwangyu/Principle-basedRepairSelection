@@ -39,7 +39,7 @@ number of non-binary conflicts:
 &emsp;&emsp;&emsp;&emsp;         `And g1.org_pac_id != g2.org_pac_id ;`    
 
 
-We selected a set of conflicts whose sizes range from 4 to 51. In total, we obtained 35710 (9134 binary and 26576 non-binary) conflicts,
+We selected a set of conflicts whose sizes range from 11 to 51. In total, we obtained 35710 (9134 binary and 26576 non-binary) conflicts:
 
 `medical_conflictgrpha.dat`
 
@@ -47,7 +47,7 @@ It is the input of the notebook:
 
 `pysat_for_hittingset.ipynb`
     
-which generated 1888 connected components of the conflict graph:  
+which generated 1888 connected components of the conflict graph `medical_conflictgrpha.dat`:  
 
 `conflicts.json` contains the conflicts appearing in each connected component.
 
