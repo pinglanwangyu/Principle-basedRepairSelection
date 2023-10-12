@@ -7,24 +7,24 @@ To do this, run the following in your terminal:
 
     git clone https://github.com/pinglanwangyu/Principle-basedRepairSelection.git
 
-To find compatibility based optimal repair, you shuold run this in your terminal:
+To find compatibility based optimal repairs, you should run this in your terminal:
     
-    java -jar compatibility_1min
+    java -jar compatibility_1min.jar
 
-Then you can find optimal repairs in file "optimalrepairs.json" and other information in file "result_1mn.txt"
+Then you can find the optimal repairs in the file "optimalrepairs.json" and other information in the file "result_1mn.txt"
 
-We have already given the conflictgraph and minimal hitting set as input for java.  
+We have already given the conflictgraph and the minimal hitting set as input of compatibility_1min.jar:  
 
     conflicts.json
     hittingsets.json
 
-You can rebuild these files by following the steps in the notebook:
+You can rebuild these two files by following the steps in the notebook:
  
     pysat_for_hittingset.ipynb
      
 
     
-Test Dataset:
+##Test Dataset:
 
 We construct a knowledge base from the
 National Downloadable File provided by [the Centers for Medicare & Medicaid Services](https://data.cms.gov/provider-data). It contains information on
