@@ -1,5 +1,7 @@
 # Principle-based Repair Selection
 
+The objective of this project is to extract preferred repairs from inconsistent knowledge bases using specific strategies, with the classical cardinality-based strategy as the conventional approach. In particular, we are implementing a compatibility-based strategy that evaluates all pairs of repairs based on a criterion: a preference for repairs exhibiting higher compatibility with other repairs, implying they are 'opposed' by fewer repairs. The formal definition of the compatibility-based strategy will be provided in the near future.
+
 To download the code to your own computer, you should clone it using Git.  
 To do this, run the following in your terminal:
 
@@ -12,6 +14,10 @@ To find compatibility based optimal repair, you shuold run this in your terminal
 Then you can find optimal repairs in file "optimalrepairs.json" and other information in file "result_1mn.txt"
 
 We have already given the conflictgraph and minimal hitting set as input for java.  
+
+    conflicts.json
+    hittingsets.json
+
 You can rebuild these files by following the steps in the notebook:
  
     pysat_for_hittingset.ipynb
